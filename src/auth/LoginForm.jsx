@@ -1,4 +1,4 @@
-
+import { BootstrapVue } from 'bootstrap-vue'
 
 const LoginForm = () => {
     // On crée un état qui contiendra un objet. Cet objet sera
