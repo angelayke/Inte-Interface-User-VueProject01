@@ -1,4 +1,4 @@
-<script setup>
+<script>
     import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 </script>
 
