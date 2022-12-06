@@ -1,25 +1,44 @@
+import constants from '../constants';
+
 class TodosService {
-    url = "https://vue-todo-a5b4cf.can.canonic.dev/api";
-    accessToken = "637aa7d3e0a20b0008881c3c-b5e5c8af-dec1-40c2-ae81-071a662e96cb"
+    url = constants.apiUrl;
+    //accessToken = "637aa7d3e0a20b0008881c3c-b5e5c8af-dec1-40c2-ae81-071a662e96cb"  
+    apiKey = constants.apiKey;
+    
 
     async getTodos() {
+        const endpoint = 'todos/all';
         try {
-            const response = await fetch(this.url, {
+            const response = await fetch(`${this.url}/${endpoint}/6383e670bef7c500081168c0`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: this.accestoken
+                    Authorization: this.apiKey,
                 }
             });
-            if (!response.ok) throw new Error(response.statusText);
 
-            return await response.json();
-        } catch (e) {
-            console.error(e);
+            console.log(response);
+        
+            if (!response.ok) {
+                throw new Error('Could not fetch ${this.endpoint}, received ${response.status}');
+
+        }
+
+            const json = await response.json();
+
+            if (json.success) {
+                return json.data;
+            } else {
+                throw new Error('Could not ftech ${this.endpoint}, received ${json.message}');
+            }
+
+        } catch (error) {
+            console.error(error);
 
             return [];
         }
     }
+
 
     async getTodo(id) {
 
@@ -28,7 +47,7 @@ class TodosService {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": this.accessToken
+                    "Authorization": this.apiKey
                 }
             });
             if (!response.ok) throw new Error(response.statusText);
@@ -44,7 +63,7 @@ class TodosService {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": this.accessToken
+                    "Authorization": this.apiKey
                 },
                 body: JSON.stringify({ _id: id, input: todo})
             });

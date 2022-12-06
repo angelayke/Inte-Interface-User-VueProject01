@@ -1,5 +1,5 @@
 <script>
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
 
 export default {
     data() {

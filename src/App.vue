@@ -1,5 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { ref } from "vue";
+import AllTaskList from './components/AllTaskList.vue';
 
 </script>
 
@@ -14,7 +16,9 @@ import { RouterLink, RouterView } from 'vue-router'
     </div>
   </header>
 
-  <RouterView />
+<AllTaskList />
+
+<RouterView />
  
 </template>
 

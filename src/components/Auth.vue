@@ -1,5 +1,5 @@
 <script setup>
-import { BootstrapVue } from 'bootstrap-vue'
+
 
 </script>
 

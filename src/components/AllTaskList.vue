@@ -1,12 +1,19 @@
-<script>
-    import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+<script setup>
+import { ref, onMounted, onUpdated } from "vue";
+import TodosService from "../services/todo-service";
+
+const todosService = new TodosService();
+
+const todos = ref([]);
+const getTodos = async () => (todos.value = await todosService.getTodos());
+
+onMounted(getTodos);
+
 </script>
 
 <template>
-    <b-list-group>
-        <b-list-group-item button>Button item</b-list-group-item>
-        <b-list-group-item button>I am a button</b-list-group-item>
-        <b-list-group-item button disabled>Disabled button</b-list-group-item>
-        <b-list-group-item button>This is a button too</b-list-group-item>
-    </b-list-group>
+<div class="todos">
+    {{todos}}
+</div>
+
 </template>
