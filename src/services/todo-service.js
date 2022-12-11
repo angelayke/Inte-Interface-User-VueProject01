@@ -5,7 +5,7 @@ class TodosService {
     //accessToken = "637aa7d3e0a20b0008881c3c-b5e5c8af-dec1-40c2-ae81-071a662e96cb"  
     apiKey = constants.apiKey;
     
-
+    //pour tous les todos
     async getTodos() {
         const endpoint = 'todos/all';
         try {
@@ -29,7 +29,40 @@ class TodosService {
             if (json.success) {
                 return json.data;
             } else {
-                throw new Error('Could not ftech ${this.endpoint}, received ${json.message}');
+                throw new Error('Could not fetch ${this.endpoint}, received ${json.message}');
+            }
+
+        } catch (error) {
+            console.error(error);
+
+            return [];
+        }
+    }
+
+    // un seul by id
+    async getTodo() {
+        const endpoint = 'todo';
+        try {
+            const response = await fetch(`${this.url}/${endpoint}/_id`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": this.apiKey
+                }
+            });
+            console.log(response);
+        
+            if (!response.ok) {
+                throw new Error('Could not fetch ${this.endpoint}, received ${response.status}');
+
+        }
+
+            const json = await response.json();
+
+            if (json.success) {
+                return json.todo;
+            } else {
+                throw new Error('Could not fetch ${this.endpoint}, received ${json.message}');
             }
 
         } catch (error) {
@@ -40,23 +73,7 @@ class TodosService {
     }
 
 
-    async getTodo(id) {
-
-        try {
-            const response = await fetch(`${this.url}/${id}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": this.apiKey
-                }
-            });
-            if (!response.ok) throw new Error(response.statusText);
-            return await response.json();
-        } catch (e) {
-            console.error(e)
-        }
-    }
-
+    //
     async updateTodo(id, todo) {
         try {
             const response = await fetch(`${this.url}/${id}`, {
@@ -67,10 +84,25 @@ class TodosService {
                 },
                 body: JSON.stringify({ _id: id, input: todo})
             });
-            if (!response.ok) throw new Error(response.statusText);
-            return await response.json();
-        } catch (e) {
-            console.error(e)
+            console.log(response);
+        
+            if (!response.ok) {
+                throw new Error('Could not fetch ${this.endpoint}, received ${response.status}');
+
+        }
+
+            const json = await response.json();
+
+            if (json.success) {
+                return json.todo;
+            } else {
+                throw new Error('Could not fetch ${this.endpoint}, received ${json.message}');
+            }
+
+        } catch (error) {
+            console.error(error);
+
+            return [];
         }
     }
 

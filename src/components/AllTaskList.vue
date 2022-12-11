@@ -12,8 +12,11 @@ onMounted(getTodos);
 </script>
 
 <template>
+
 <div class="todos">
-    {{todos}}
+    <b-list-group>
+        <b-list-group-item>{{todos}}</b-list-group-item>
+    </b-list-group>
 </div>
 
 </template>
