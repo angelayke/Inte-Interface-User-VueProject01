@@ -1,13 +1,29 @@
 <script setup>
-  import { Ref } from 'vue';
+  import { ref } from 'vue';
   import AuthService from '../services/auth-service';
+  import TodosService  from '../services/todo-service';
   const authService = new AuthService();
+  const todosService = new TodosService();
 
   const title = ref("");
-  const description = ref("");
+  const content = ref("");
   const done = ref(false);
   const user = ref(authService.getUserId());
   const doneAt = ref(new Date());
+
+  const createTodo = async () => {
+    const todo = {
+      title: title.value,
+      content: content.value,
+      done: done.value,
+      user: user.value,
+      doneAt: doneAt.value
+    };
+
+    const newTodo = await todosService.createTodo(todo);
+
+    console.log(newTodo);
+  }
 </script>
 
 <template>
@@ -34,6 +50,8 @@
         <label for="content">Content</label>
         <input type="text" id="content" v-model="content" placeholder="Content" />
       </div>
+
+      <button class="btn btn-primary mt-4 w-100" @click="createTodo">Créer tâche</button>
     </form>
   </div>
 </template>
