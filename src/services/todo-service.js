@@ -6,6 +6,30 @@ class TodosService {
     //accessToken = "637aa7d3e0a20b0008881c3c-b5e5c8af-dec1-40c2-ae81-071a662e96cb"  
     apiKey = constants.apiKey;
     authService = new AuthService();
+
+    async createTodo(todo) {
+        const endpoint = "todos";
+
+        try {
+            const response = await fetch('${this.url}/${endpoint}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: this.apiKey,
+                },
+                body: JSON.stringify({ input: todo})
+            });
+
+            if (!response.ok) {
+                throw new Error(`Could not fetch ${this.endpoint}, received ${response.status}`);
+            }
+
+            return await response.json();
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
     
     //pour tous les todos
     async getTodos() {

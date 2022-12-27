@@ -6,7 +6,7 @@ import Modal from './Modal.vue';
 const todosService = new TodosService();
 
 const todo = ref(null);
-const todos = ref([ {items: [{ id: 1}]}, {items: [{ id: 2}]} ]);
+const todos = ref([]); //ref([ {items: [{ id: 1}]}, {items: [{ id: 2}]} ])
 const getTodos = async () => (todos.value = await todosService.getTodos());
 
 const onTodoClick = (t) => {
