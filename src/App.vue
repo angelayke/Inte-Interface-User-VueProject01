@@ -29,9 +29,7 @@ onMounted(tryAuth);
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
-  </header>
-
-<AllTaskList />-->
+  </header>-->
 <LogoutButton/>
 <RouterView />
  

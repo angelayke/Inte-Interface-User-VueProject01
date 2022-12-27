@@ -9,19 +9,26 @@ const todo = ref(null);
 const todos = ref([ {items: [{ id: 1}]}, {items: [{ id: 2}]} ]);
 const getTodos = async () => (todos.value = await todosService.getTodos());
 
-const onTodoClick = () => {
-    console.log("clicked");
-}
+const onTodoClick = (t) => {
+    todo.value = t;
+};
+
+const onModalClose = () => {
+    todo.value = null;
+};
 
 onMounted(getTodos);
 </script>
 
 <template>
 
-<div @click="onTodoClick" v-for="todo of todos" class="todos">
+<div @click="onTodoClick(todo)" v-for="todo of todos" class="todos">
     <!--<p v-for="item in todo.items">
         {{item.id}}
     </p>-->
+    {{ todo.title }}
 </div>
-<Modal></Modal>
+<Modal :toggleModal="onModalClose" :isOpen="!!todo">
+    {{ todo.title }}
+</Modal>
 </template>
