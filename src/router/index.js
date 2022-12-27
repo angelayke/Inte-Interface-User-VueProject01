@@ -1,9 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/LoginView.vue'
+import RegisterView from '../views/RegisterView.vue'
+import AuthService from '../services/auth-service'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/auth',
+      name: 'auth',
+      children: [
+        {
+          path: 'login',
+          name: 'login',
+          component: LoginView
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: RegisterView
+        }
+      ]
+    },
     {
       path: '/',
       name: 'home',
@@ -19,5 +39,20 @@ const router = createRouter({
     }
   ]
 })
+
+const authService = new AuthService()
+
+//le gardien de l'authentification
+router.beforeEach(async (to, from) => {
+  const routes = [
+    {name: 'login'},
+    {name: 'register'},
+  ]
+  if (routes.every(route => route.name !== to.name)) {
+    if (!(await AuthService.authenticate())) {
+      return { name: 'Login' };
+    }
+  }
+});
 
 export default router

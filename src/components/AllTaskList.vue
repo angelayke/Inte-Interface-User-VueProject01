@@ -1,22 +1,27 @@
 <script setup>
 import { ref, onMounted, onUpdated } from "vue";
 import TodosService from "../services/todo-service";
+import Modal from './Modal.vue';
 
 const todosService = new TodosService();
 
-const todos = ref([]);
+const todo = ref(null);
+const todos = ref([ {items: [{ id: 1}]}, {items: [{ id: 2}]} ]);
 const getTodos = async () => (todos.value = await todosService.getTodos());
 
-onMounted(getTodos);
+const onTodoClick = () => {
+    console.log("clicked");
+}
 
+onMounted(getTodos);
 </script>
 
 <template>
 
-<div class="todos">
-    <b-list-group>
-        <b-list-group-item>{{todos}}</b-list-group-item>
-    </b-list-group>
+<div @click="onTodoClick" v-for="todo of todos" class="todos">
+    <!--<p v-for="item in todo.items">
+        {{item.id}}
+    </p>-->
 </div>
-
+<Modal></Modal>
 </template>
