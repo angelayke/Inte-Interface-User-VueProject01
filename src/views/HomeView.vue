@@ -4,6 +4,10 @@ import AllTaskList from '../components/AllTaskList.vue';
 
 <template>
   <main>
+    <!--<div id="app">
+      <quill-editor theme="snow"></quill-editor>
+    </div> -->
+
     <AllTaskList />
   </main>
 </template>

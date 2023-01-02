@@ -7,6 +7,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueup/vue-quill": "^1.0.1",
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
     "pinia": "^2.0.23",
