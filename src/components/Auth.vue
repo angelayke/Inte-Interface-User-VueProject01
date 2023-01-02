@@ -1,5 +1,5 @@
 <script setup>
-
+//  trouvé probablement dans un tuto, cette page ne servira pas
 
 </script>
 

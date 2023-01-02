@@ -15,12 +15,12 @@ const router = createRouter({
         {
           path: 'login',
           name: 'login',
-          component: () => import('../views/LoginView.vue')
+          component: LoginView
         },
         {
           path: 'register',
           name: 'register',
-          component: () => import('../views/RegisterView.vue')
+          component: RegisterView
         }
       ]
     },
@@ -43,14 +43,14 @@ const router = createRouter({
 const authService = new AuthService()
 
 //le gardien de l'authentification
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to) => {
   const routes = [
     {name: 'login'},
     {name: 'register'},
   ]
   if (routes.every(route => route.name !== to.name)) {
-    if (!(await AuthService.authenticate())) {
-      return { name: 'Login' };
+    if (!(await authService.authenticate())) {
+      return { name: 'login' };
     }
   }
 });

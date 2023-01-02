@@ -24,7 +24,7 @@ const register = async () => {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <form class="w-100">
             <div class="form-group">
                 <label for="email">Adresse email</label>

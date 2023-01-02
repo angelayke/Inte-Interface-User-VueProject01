@@ -37,11 +37,11 @@ class AuthService {
 
             if (!token) return null;
 
-            const response = await fetch(`${this.url}/${constants.users.auth}`, {
+            const response = await fetch(`${this.url}/${endpoint}`, { //constants.users.auth -erreur
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": this.accessToken
+                    "Authorization": this.apiKey
                 },
                 body: JSON.stringify({ token }),
             });
@@ -80,7 +80,7 @@ class AuthService {
 
 			if (json.success) {
 				const { token, user } = json.data;
-                console.log(toker, user);
+                console.log(token, user);
 				this.setToken(token);
 				this.setUserId(user._id);
 			}

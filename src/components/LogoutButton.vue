@@ -14,13 +14,13 @@
 </script>
 
 <template>
-    <!-- Avant <button v-if="$route.name !== 'login' || $route.name !== 'register'"> -->
+    <!-- Avant <button v-if="$route.name !== 'login' || $route.name !== 'register'"> ou  v-if="routeNames.includes($route.name)"  -->
     <button 
-        v-if="routeNames.includes($route.name)" 
+        v-if="routeNames.includes($route.name)"
         class="btn btn-danger" 
         @click="logout" 
         type="button"
     >
-        Sign out
+    {{ $route.name }}  <!--{{ $route.name }} ou Sign out-->
     </button>
 </template>
