@@ -28,19 +28,6 @@
 </script>
 
 <template>
-  <!--
-  <b-container fluid>
-    <b-row class="my-1" v-for="type in types" :key="type">
-      <b-col sm="3">
-        <label :for="`type-${type}`">Type <code>{{ type }}</code>:</label>
-      </b-col>
-      <b-col sm="9">
-        <b-form-input :id="`type-${type}`" :type="type"></b-form-input>
-      </b-col>
-    </b-row>
-  </b-container>
-  -->
-
   <div class="container-fluid">
     <form class="container w-100">
       <div class="form-control">
@@ -49,7 +36,7 @@
       </div>
       <div class="form-control">
         <label for="content">Description</label>
-        <input type="text" id="content" v-model="content" placeholder="Description" />
+        <input class="w-100" type="text" id="content" v-model="content" placeholder="Description" />
       </div>
 
       <div>

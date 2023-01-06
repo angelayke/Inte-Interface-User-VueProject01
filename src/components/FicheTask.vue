@@ -1,20 +1,17 @@
-<script>
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+<script setup>
+
 </script>
 
 <template>
 <div>
-  <b-card title="Card title" sub-title="Card subtitle">
-    <b-card-text>
-      Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
-      content.
-    </b-card-text>
-
-    <b-card-text>A second paragraph of text in the card.</b-card-text>
-
-    <a href="#" class="card-link">Card link</a>
-    <b-link href="#" class="card-link">Another link</b-link>
-  </b-card>
+  <div class="card">
+  <h5 class="card-header">Featured</h5>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
 </div>
 
 </template>
