@@ -19,7 +19,7 @@ const register = async () => {
     router.push({name: "home"});
    }
 
-   //console.log(email.value, password.value);
+   console.log(email.value, password.value);
 }
 </script>
 

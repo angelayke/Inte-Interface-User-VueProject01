@@ -1,5 +1,6 @@
 <script setup>
 import AllTaskList from '../components/AllTaskList.vue';
+
 </script>
 
 <template>
