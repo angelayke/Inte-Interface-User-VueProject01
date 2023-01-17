@@ -11,7 +11,7 @@ class TodosService {
         const endpoint = "todos";
 
         try {
-            const response = await fetch('${this.url}/${endpoint}', {
+            const response = await fetch(`${this.url}/${endpoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,35 +1,9 @@
 <script setup>
-  import {
-    ref
-  } from 'vue';
-  import AuthService from '../services/auth-service';
-  import TodosService from '../services/todo-service';
-  const authService = new AuthService();
-  const todosService = new TodosService();
-
-  const title = ref("");
-  const content = ref("");
-  const done = ref(false);
-  const user = ref(authService.getUserId());
-  const doneAt = ref(new Date());
-
-  const createTodo = async () => {
-    const todo = {
-      title: title.value,
-      content: content.value,
-      done: done.value,
-      user: user.value,
-      doneAt: doneAt.value
-    };
-
-    const newTodo = await todosService.createTodo(todo);
-
-    console.log(newTodo);
-  }
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 </script>
 
 <template>
-  <div class="container-fluid">
+    <div class="container-fluid">
     <form class="container w-100">
       <div class="form-control">
         <label for="title">Titre</label>
@@ -52,7 +26,7 @@
         <p>Value: '{{ value }}'</p>
       </div>
 
-      <button type="button" class="btn btn-primary mt-4 w-100" @click="createTodo">Créer tâche</button>
+      <button type="button" class="btn btn-primary mt-4 w-100" @click="updateTodo">Modifier une tâche</button>
     </form>
   </div>
 </template>

@@ -38,16 +38,20 @@
         <NewTask />
     </Modal>
 
+
 <!--contenu de la page-->
 <div class="flex-card">
     <div @click="onTodoClick(todo)" v-for="todo of todos" class="todos">
 
         <div>
-            <div class="card text-bg-light mb-3 me-2" style="max-width: 18rem; max-height: 10rem; overflow: auto;">
-                <div class="card-header">{{ todo.user }}</div>
-                <div class="card-body">
+            <div class="card text-bg-light mb-3 me-2" style="max-width: 18.5rem; height: 15rem; overflow: auto;">
+                <div class="card-header">
                     <h5 class="card-title">{{ todo.title }}</h5>
+                    <em>Créée le : {{ todo.createdAt }}</em>    
+                </div>
+                <div class="card-body">    
                     <p class="card-text">{{ todo.content }}</p>
+                    <p><em>À terminer avant le : <br> {{ todo.timeLimit }}</em> </p>
                 </div>
             </div>
         </div>
