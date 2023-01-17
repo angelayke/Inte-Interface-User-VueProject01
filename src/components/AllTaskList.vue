@@ -7,12 +7,14 @@
     import TodosService from "../services/todo-service";
     import Modal from './Modal.vue';
     import NewTask from "./NewTask.vue";
+    import UpdateTask from "./UpdateTask.vue";
 
     const todosService = new TodosService();
 
     const todo = ref(null);
     const todos = ref([]); //ref([ {items: [{ id: 1}]}, {items: [{ id: 2}]} ])
     const isCreateModalOpen = ref(false);
+    const isUpdateModalOpen = ref(false);
 
     const getTodos = async () => (todos.value = await todosService.getTodos());
 
@@ -26,6 +28,10 @@
 
     const onToggleCreateModal = () => {
         isCreateModalOpen.value = !isCreateModalOpen.value;
+    }
+
+    const onToggleUpdateModal = () => {
+        isUpdateModalOpen.value = !isUpdateModalOpen.value;
     }
 
     onMounted(getTodos);
@@ -64,6 +70,12 @@
                     <h5 class="card-title">{{ todo.title }}</h5>
                     <p class="card-text">{{ todo.content }}</p>
                 </div>
+            </div>
+            <div>
+                <button class="btn btn-secondary" @click="onToggleUpdateModal">Modifier cette tâche</button>
+                    <Modal :isOpen="isUpdateModalOpen" :toggleModal="onToggleUpdateModal">
+                        <UpdateTask />
+                    </Modal>
             </div>
         </div>
     </Modal>
