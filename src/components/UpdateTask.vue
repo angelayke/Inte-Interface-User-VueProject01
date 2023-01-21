@@ -7,7 +7,7 @@
   const authService = new AuthService();
   const todosService = new TodosService();
 
-  const title = ref(todosService.getTodo(id));
+  const title = ref(todosService.getTodo());
   const content = ref("");
   const done = ref(false);
   const user = ref(authService.getUserId());

@@ -67,8 +67,8 @@
                 </div>
             </div>
         </div>
-</div>
     </div>
+</div>
     <Modal :toggleModal="onModalClose" :isOpen="!!todo">
         <div>
             <div class="card text-bg-light mb-3" style="max-width: 100%;">
