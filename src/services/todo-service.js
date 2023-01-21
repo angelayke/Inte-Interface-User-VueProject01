@@ -7,29 +7,7 @@ class TodosService {
     apiKey = constants.apiKey;
     authService = new AuthService();
 
-    async createTodo(todo) {
-        const endpoint = "todos";
-
-        try {
-            const response = await fetch(`${this.url}/${endpoint}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: this.apiKey,
-                },
-                body: JSON.stringify({ input: todo})
-            });
-
-            if (!response.ok) {
-                throw new Error(`Could not fetch ${this.endpoint}, received ${response.status}`);
-            }
-
-            return await response.json();
-
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    
     
     //pour tous les todos
     async getTodos() {
@@ -90,9 +68,32 @@ class TodosService {
             return [];
         }
     }
+    //AJOUTER-CREER
+    async createTodo(todo) {
+        const endpoint = "todos";
 
+        try {
+            const response = await fetch(`${this.url}/${endpoint}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: this.apiKey,
+                },
+                body: JSON.stringify({ input: todo})
+            });
 
-    //
+            if (!response.ok) {
+                throw new Error(`Could not fetch ${this.endpoint}, received ${response.status}`);
+            }
+
+            return await response.json();
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    //MODIFIER
     async updateTodo(id, todo) {
         try {
             const response = await fetch(`${this.url}/${id}`, {
@@ -122,6 +123,25 @@ class TodosService {
             console.error(error);
 
             return [];
+        }
+    }
+
+    //DELETE
+    async deleteTodo(id) {
+        try {
+            const response = await fetch(`${this.url}/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": this.apiKey
+            },
+        });
+
+            if (!response.ok) throw new Error(response.statusText);
+
+            return await response.json();
+        } catch (e) {
+            console.error(e)
         }
     }
 

@@ -8,6 +8,7 @@
     import Modal from './Modal.vue';
     import NewTask from "./NewTask.vue";
     import UpdateTask from "./UpdateTask.vue";
+    import FicheTask from "./FicheTask.vue";
 
     const todosService = new TodosService();
 
@@ -15,6 +16,7 @@
     const todos = ref([]); //ref([ {items: [{ id: 1}]}, {items: [{ id: 2}]} ])
     const isCreateModalOpen = ref(false);
     const isUpdateModalOpen = ref(false);
+    const isDeleteModalOpen = ref(false);
 
     const getTodos = async () => (todos.value = await todosService.getTodos());
 
@@ -32,6 +34,10 @@
 
     const onToggleUpdateModal = () => {
         isUpdateModalOpen.value = !isUpdateModalOpen.value;
+    }
+
+    const onToggleDeleteModal = () => {
+        isDeleteModalOpen.value = !isDeleteModalOpen.value;
     }
 
     onMounted(getTodos);
@@ -75,6 +81,11 @@
                 <button class="btn btn-secondary" @click="onToggleUpdateModal">Modifier cette tâche</button>
                     <Modal :isOpen="isUpdateModalOpen" :toggleModal="onToggleUpdateModal">
                         <UpdateTask />
+                    </Modal>
+           
+                <button class="btn btn-danger" @click="onToggleDeleteModal">Supprimer cette tâche</button>
+                    <Modal :isOpen="isDeleteModalOpen" :toggleModal="onToggleDeleteModal">
+                        <!--<FicheTask />-->
                     </Modal>
             </div>
         </div>
