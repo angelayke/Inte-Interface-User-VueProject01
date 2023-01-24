@@ -9,6 +9,7 @@
     import NewTask from "./NewTask.vue";
     import UpdateTask from "./UpdateTask.vue";
     import FicheTask from "./FicheTask.vue";
+    import Todo from "../services/builder";
 
     const todosService = new TodosService();
 
@@ -41,6 +42,9 @@
     }
 
     onMounted(getTodos);
+
+    const todoBuild = Todo.Builder.withTitle("todoBuild01").withContent("content01").build();
+    console.log(todoBuild)
 </script>
 
 <template>
