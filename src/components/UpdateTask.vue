@@ -1,17 +1,17 @@
 <script setup>
    import {
-    ref
+    ref,defineProps
   } from 'vue';
-  import AuthService from '../services/auth-service';
-  import TodosService from '../services/todo-service';
-  const authService = new AuthService();
+  import TodosService from '../services/todo-service'
   const todosService = new TodosService();
 
-  const title = ref(todosService.getTodo());
-  const content = ref("");
-  const done = ref(false);
-  const user = ref(authService.getUserId());
-  const doneAt = ref(new Date());
+  const props = defineProps({ todo: Object });
+
+  const title = ref(props.todo.title);
+  const content = ref(props.todo.content);
+  const done = ref(props.todo.done);
+  const user = ref(props.todo.user);
+  const doneAt = ref(props.todo.doneAt);
 
   const updateTodo = async () => {
     const todo = {
@@ -22,7 +22,7 @@
       doneAt: doneAt.value
     };
 
-    const newTodo = await todosService.updateTodo(todo);
+    const newTodo = await todosService.updateTodo(props.todo._id, todo);
 
     console.log(newTodo);
   }

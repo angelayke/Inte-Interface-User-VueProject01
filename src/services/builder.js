@@ -1,7 +1,7 @@
 class Todo {
     constructor(task) {
         this.task = task;
-        console.log(task)
+        //console.log(task)
     }
 
 static Builder = class {
@@ -26,7 +26,15 @@ static Builder = class {
         return this;
     }
     static build(){
-        return new Todo().task;
+        const object = {
+            done: this.done,
+        };
+
+        if (this.title) object.title = this.title;
+        if (this.content) object.content = this.content;
+        if (this.timeLimit) object.timeLimit = this.timeLimit;
+        if (this.done) object.done = this.done;
+        return new Todo(object).task;
         console.log(build);
     }
 }

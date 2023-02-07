@@ -96,7 +96,7 @@ class TodosService {
     //MODIFIER
     async updateTodo(id, todo) {
         try {
-            const response = await fetch(`${this.url}/${id}`, {
+            const response = await fetch(`${this.url}/todos/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -129,13 +129,13 @@ class TodosService {
     //DELETE
     async deleteTodo(id) {
         try {
-            const response = await fetch(`${this.url}/${id}`, {
+            const response = await fetch(`${this.url}/todos/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": this.apiKey
-            },
-        });
+                }
+            });
 
             if (!response.ok) throw new Error(response.statusText);
 
