@@ -10,6 +10,7 @@
     import UpdateTask from "./UpdateTask.vue";
     import FicheTask from "./FicheTask.vue";
     import Todo from "../services/builder";
+    import {RecipeApiAdapter} from "../services/adapter";
 
     const todosService = new TodosService();
 
@@ -47,6 +48,10 @@
  
     const todoBuild = Todo.Builder.withTitle("todoBuild01").withContent("content01").build();
     //console.log(todoBuild)
+
+    //const RecipeApiAdapter = new RecipeApiAdapter();
+    //const date = ref(todosService.getTodo(createdAt));
+
 </script>
 
 <template>

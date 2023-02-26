@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useRouter } from "vue-router";
 import AuthService from '../services/auth-service';
+import Login from '../services/singleton';
 const authService = new AuthService();
 
 const email = ref("");
