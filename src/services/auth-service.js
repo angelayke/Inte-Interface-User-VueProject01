@@ -1,10 +1,15 @@
 import constants from '../constants';
+import authObserverOne, { authEvents } from './auth-observer';
 
 class AuthService {
     url = `${constants.apiUrl}/users`;
     apiKey = constants.apiKey;
     tokenKey = "jwt-token";
     userIdKey = "user-id";
+
+    observerOne = authObserverOne;
+    events = authEvents;
+
 
     getUserId() {
         return localStorage.getItem(this.userIdKey);
@@ -90,6 +95,8 @@ class AuthService {
         } catch(error){
             console.error(error);
         }
+
+        this.oberserveOne.publish(this.events.onLogin, user);
     }
 
     async register(email, password) {
@@ -125,6 +132,7 @@ class AuthService {
         this.clearToken();
         this.clearUserId();
     }
+    
 }
 
 export default AuthService;

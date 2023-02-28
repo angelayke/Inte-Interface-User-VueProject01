@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useRouter } from "vue-router";
 import AuthService from '../services/auth-service';
+import Login from '../services/singleton';
 const authService = new AuthService();
 
 const email = ref("");
@@ -20,6 +21,17 @@ const login = async () => {
 
    console.log(email.value, password.value);
 }
+//ObserverOne
+const currentUser = ref (null);
+const onLogin = (user) => {
+    if (!user) return;
+    currentUser.value = user;
+}
+
+AuthService
+    .observerOne
+    .subscribe(AuthService.events.onLogin, onLogin);
+    
 </script>
 
 <template>

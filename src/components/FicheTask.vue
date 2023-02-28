@@ -22,9 +22,7 @@
       doneAt: doneAt.value
     };
 
-    const newTodo = await todosService.deleteTodo(todo);
-
-    console.log(newTodo);
+    const deleteTodo = async () => await todosService.deleteTodo(todo);
   }
 </script>
 

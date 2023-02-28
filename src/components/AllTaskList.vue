@@ -9,6 +9,8 @@
     import NewTask from "./NewTask.vue";
     import UpdateTask from "./UpdateTask.vue";
     import FicheTask from "./FicheTask.vue";
+    import Todo from "../services/builder";
+    import {RecipeApiAdapter} from "../services/adapter";
 
     const todosService = new TodosService();
 
@@ -41,9 +43,20 @@
     }
 
     onMounted(getTodos);
+
+    const deleteTodo = (id) => todosService.deleteTodo(id);
+ 
+    const todoBuild = Todo.Builder.withTitle("todoBuild01").withContent("content01").build();
+    //console.log(todoBuild)
+
+    //const RecipeApiAdapter = new RecipeApiAdapter();
+    //const date = ref(todosService.getTodo(createdAt));
+
 </script>
 
 <template>
+
+    
 <!--boutons-->
 <button class="btn btn-secondary" @click="onToggleCreateModal">Ajouter une tâche</button>
     <Modal :isOpen="isCreateModalOpen" :toggleModal="onToggleCreateModal">
@@ -80,12 +93,15 @@
             <div>
                 <button class="btn btn-secondary" @click="onToggleUpdateModal">Modifier cette tâche</button>
                     <Modal :isOpen="isUpdateModalOpen" :toggleModal="onToggleUpdateModal">
-                        <UpdateTask />
+                        <UpdateTask :todo="todo" />
                     </Modal>
            
                 <button class="btn btn-danger" @click="onToggleDeleteModal">Supprimer cette tâche</button>
                     <Modal :isOpen="isDeleteModalOpen" :toggleModal="onToggleDeleteModal">
                         <!--<FicheTask />-->
+                        Are you sure?
+
+                        <button type="button" @click="deleteTodo(todo._id)">Yes!</button>
                     </Modal>
             </div>
         </div>
