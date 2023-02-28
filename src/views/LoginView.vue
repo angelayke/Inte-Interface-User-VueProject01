@@ -21,6 +21,17 @@ const login = async () => {
 
    console.log(email.value, password.value);
 }
+//ObserverOne
+const currentUser = ref (null);
+const onLogin = (user) => {
+    if (!user) return;
+    currentUser.value = user;
+}
+
+AuthService
+    .observerOne
+    .subscribe(AuthService.events.onLogin, onLogin);
+    
 </script>
 
 <template>
